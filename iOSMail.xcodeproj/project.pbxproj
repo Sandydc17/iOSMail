@@ -3,18 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC4038ED6F3D957B782AB6BE /* Pods_iOSMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4ED8C7CF6D19F29FD609D1 /* Pods_iOSMail.framework */; };
 		CAC29BB925358D8800F8B073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BB825358D8800F8B073 /* AppDelegate.swift */; };
 		CAC29BBB25358D8800F8B073 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BBA25358D8800F8B073 /* SceneDelegate.swift */; };
 		CAC29BBD25358D8800F8B073 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BBC25358D8800F8B073 /* ViewController.swift */; };
-		CAC29BC025358D8800F8B073 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC29BBE25358D8800F8B073 /* Main.storyboard */; };
 		CAC29BC225358D8C00F8B073 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC29BC125358D8C00F8B073 /* Assets.xcassets */; };
 		CAC29BC525358D8C00F8B073 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC29BC325358D8C00F8B073 /* LaunchScreen.storyboard */; };
 		CAC29BD025358D8C00F8B073 /* iOSMailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BCF25358D8C00F8B073 /* iOSMailTests.swift */; };
 		CAC29BDB25358D8C00F8B073 /* iOSMailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BDA25358D8C00F8B073 /* iOSMailUITests.swift */; };
+		CAC29BFA253597D700F8B073 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29BF9253597D700F8B073 /* Constant.swift */; };
+		CAC29C0225359EC300F8B073 /* mail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C0125359EC300F8B073 /* mail.swift */; };
+		CAC29C102535A41B00F8B073 /* MailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C0F2535A41B00F8B073 /* MailProtocol.swift */; };
+		CAC29C152535A56C00F8B073 /* MailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C142535A56C00F8B073 /* MailRouter.swift */; };
+		CAC29C1A2535A5CC00F8B073 /* MailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C192535A5CC00F8B073 /* MailInteractor.swift */; };
+		CAC29C1F2535A61700F8B073 /* MailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C1E2535A61700F8B073 /* MailPresenter.swift */; };
+		CAC29C252535A6E300F8B073 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C232535A6E300F8B073 /* MailViewController.swift */; };
+		CAC29C262535A6E300F8B073 /* MailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC29C242535A6E300F8B073 /* MailViewController.xib */; };
+		CAC29C2C2535AA4500F8B073 /* MailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC29C2A2535AA4500F8B073 /* MailCell.swift */; };
+		CAC29C2D2535AA4500F8B073 /* MailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC29C2B2535AA4500F8B073 /* MailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		619BEE9BBF82F5EC2A003DC5 /* Pods-iOSMail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSMail.release.xcconfig"; path = "Target Support Files/Pods-iOSMail/Pods-iOSMail.release.xcconfig"; sourceTree = "<group>"; };
+		A0211FCA77E1A2D3A7CB7317 /* Pods-iOSMail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSMail.debug.xcconfig"; path = "Target Support Files/Pods-iOSMail/Pods-iOSMail.debug.xcconfig"; sourceTree = "<group>"; };
 		CAC29BB525358D8800F8B073 /* iOSMail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSMail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC29BB825358D8800F8B073 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC29BBA25358D8800F8B073 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CAC29BBC25358D8800F8B073 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CAC29BBF25358D8800F8B073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAC29BC125358D8C00F8B073 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC29BC425358D8C00F8B073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC29BC625358D8C00F8B073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +60,17 @@
 		CAC29BD625358D8C00F8B073 /* iOSMailUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSMailUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC29BDA25358D8C00F8B073 /* iOSMailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMailUITests.swift; sourceTree = "<group>"; };
 		CAC29BDC25358D8C00F8B073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC29BF9253597D700F8B073 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		CAC29C0125359EC300F8B073 /* mail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mail.swift; sourceTree = "<group>"; };
+		CAC29C0F2535A41B00F8B073 /* MailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailProtocol.swift; sourceTree = "<group>"; };
+		CAC29C142535A56C00F8B073 /* MailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailRouter.swift; sourceTree = "<group>"; };
+		CAC29C192535A5CC00F8B073 /* MailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailInteractor.swift; sourceTree = "<group>"; };
+		CAC29C1E2535A61700F8B073 /* MailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPresenter.swift; sourceTree = "<group>"; };
+		CAC29C232535A6E300F8B073 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
+		CAC29C242535A6E300F8B073 /* MailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailViewController.xib; sourceTree = "<group>"; };
+		CAC29C2A2535AA4500F8B073 /* MailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCell.swift; sourceTree = "<group>"; };
+		CAC29C2B2535AA4500F8B073 /* MailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailCell.xib; sourceTree = "<group>"; };
+		DE4ED8C7CF6D19F29FD609D1 /* Pods_iOSMail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSMail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4038ED6F3D957B782AB6BE /* Pods_iOSMail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B4EFFD7F207BE7F529CFDAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0211FCA77E1A2D3A7CB7317 /* Pods-iOSMail.debug.xcconfig */,
+				619BEE9BBF82F5EC2A003DC5 /* Pods-iOSMail.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AAD36FFE31838D64C61C3789 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE4ED8C7CF6D19F29FD609D1 /* Pods_iOSMail.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CAC29BAC25358D8800F8B073 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +123,8 @@
 				CAC29BCE25358D8C00F8B073 /* iOSMailTests */,
 				CAC29BD925358D8C00F8B073 /* iOSMailUITests */,
 				CAC29BB625358D8800F8B073 /* Products */,
+				5B4EFFD7F207BE7F529CFDAC /* Pods */,
+				AAD36FFE31838D64C61C3789 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +141,15 @@
 		CAC29BB725358D8800F8B073 /* iOSMail */ = {
 			isa = PBXGroup;
 			children = (
+				CAC29BEC25358F0A00F8B073 /* Mail Detail */,
+				CAC29BEB25358EFD00F8B073 /* Mail */,
 				CAC29BB825358D8800F8B073 /* AppDelegate.swift */,
 				CAC29BBA25358D8800F8B073 /* SceneDelegate.swift */,
 				CAC29BBC25358D8800F8B073 /* ViewController.swift */,
-				CAC29BBE25358D8800F8B073 /* Main.storyboard */,
 				CAC29BC125358D8C00F8B073 /* Assets.xcassets */,
 				CAC29BC325358D8C00F8B073 /* LaunchScreen.storyboard */,
 				CAC29BC625358D8C00F8B073 /* Info.plist */,
+				CAC29BF9253597D700F8B073 /* Constant.swift */,
 			);
 			path = iOSMail;
 			sourceTree = "<group>";
@@ -128,6 +172,125 @@
 			path = iOSMailUITests;
 			sourceTree = "<group>";
 		};
+		CAC29BEB25358EFD00F8B073 /* Mail */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29BF225358F7000F8B073 /* Protocol */,
+				CAC29BF125358F6C00F8B073 /* View */,
+				CAC29BF025358F6300F8B073 /* Presenter */,
+				CAC29BEF25358F5600F8B073 /* Interactor */,
+				CAC29BEE25358F5000F8B073 /* Entity */,
+				CAC29BED25358F4000F8B073 /* Route */,
+			);
+			path = Mail;
+			sourceTree = "<group>";
+		};
+		CAC29BEC25358F0A00F8B073 /* Mail Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29BF825358FAE00F8B073 /* Protocol */,
+				CAC29BF725358FA900F8B073 /* View */,
+				CAC29BF625358FA400F8B073 /* Presenter */,
+				CAC29BF525358F9F00F8B073 /* Interactor */,
+				CAC29BF425358F9B00F8B073 /* Entity */,
+				CAC29BF325358F9400F8B073 /* Route */,
+			);
+			path = "Mail Detail";
+			sourceTree = "<group>";
+		};
+		CAC29BED25358F4000F8B073 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C142535A56C00F8B073 /* MailRouter.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		CAC29BEE25358F5000F8B073 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C0125359EC300F8B073 /* mail.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		CAC29BEF25358F5600F8B073 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C192535A5CC00F8B073 /* MailInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		CAC29BF025358F6300F8B073 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C1E2535A61700F8B073 /* MailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CAC29BF125358F6C00F8B073 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C232535A6E300F8B073 /* MailViewController.swift */,
+				CAC29C242535A6E300F8B073 /* MailViewController.xib */,
+				CAC29C2A2535AA4500F8B073 /* MailCell.swift */,
+				CAC29C2B2535AA4500F8B073 /* MailCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC29BF225358F7000F8B073 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				CAC29C0F2535A41B00F8B073 /* MailProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		CAC29BF325358F9400F8B073 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		CAC29BF425358F9B00F8B073 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		CAC29BF525358F9F00F8B073 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		CAC29BF625358FA400F8B073 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CAC29BF725358FA900F8B073 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC29BF825358FAE00F8B073 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAC29BDF25358D8C00F8B073 /* Build configuration list for PBXNativeTarget "iOSMail" */;
 			buildPhases = (
+				BB9CAA27F2D33B298421B481 /* [CP] Check Pods Manifest.lock */,
 				CAC29BB125358D8800F8B073 /* Sources */,
 				CAC29BB225358D8800F8B073 /* Frameworks */,
 				CAC29BB325358D8800F8B073 /* Resources */,
+				514A4ABE2968AA5B68D31A00 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,8 +397,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAC29BC525358D8C00F8B073 /* LaunchScreen.storyboard in Resources */,
+				CAC29C2D2535AA4500F8B073 /* MailCell.xib in Resources */,
+				CAC29C262535A6E300F8B073 /* MailViewController.xib in Resources */,
 				CAC29BC225358D8C00F8B073 /* Assets.xcassets in Resources */,
-				CAC29BC025358D8800F8B073 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +419,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		514A4ABE2968AA5B68D31A00 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSMail/Pods-iOSMail-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSMail/Pods-iOSMail-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSMail/Pods-iOSMail-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB9CAA27F2D33B298421B481 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOSMail-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CAC29BB125358D8800F8B073 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC29C152535A56C00F8B073 /* MailRouter.swift in Sources */,
 				CAC29BBD25358D8800F8B073 /* ViewController.swift in Sources */,
+				CAC29C2C2535AA4500F8B073 /* MailCell.swift in Sources */,
+				CAC29C0225359EC300F8B073 /* mail.swift in Sources */,
+				CAC29C1F2535A61700F8B073 /* MailPresenter.swift in Sources */,
+				CAC29C102535A41B00F8B073 /* MailProtocol.swift in Sources */,
 				CAC29BB925358D8800F8B073 /* AppDelegate.swift in Sources */,
+				CAC29C1A2535A5CC00F8B073 /* MailInteractor.swift in Sources */,
 				CAC29BBB25358D8800F8B073 /* SceneDelegate.swift in Sources */,
+				CAC29BFA253597D700F8B073 /* Constant.swift in Sources */,
+				CAC29C252535A6E300F8B073 /* MailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +512,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CAC29BBE25358D8800F8B073 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC29BBF25358D8800F8B073 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAC29BC325358D8C00F8B073 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -433,6 +641,7 @@
 		};
 		CAC29BE025358D8C00F8B073 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0211FCA77E1A2D3A7CB7317 /* Pods-iOSMail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +661,7 @@
 		};
 		CAC29BE125358D8C00F8B073 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 619BEE9BBF82F5EC2A003DC5 /* Pods-iOSMail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
