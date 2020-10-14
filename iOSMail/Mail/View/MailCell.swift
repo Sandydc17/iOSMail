@@ -24,7 +24,8 @@ class MailCell: UITableViewCell {
         nameLabel.text = mail.from[0].name
         subjectLabel.text = mail.subject
         timeLabel.text = mail.received
-        contentLabel.text = "content email cont ent email con tent email cont ent email cont ent email con tent email"
+        contentLabel.text = mail.content
+//        contentLabel.text = "content email cont ent email con tent email cont ent email cont ent email con tent email"
         readed.isHidden = mail.read ?? false
     }
     

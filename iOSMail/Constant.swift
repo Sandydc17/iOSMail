@@ -12,3 +12,6 @@ class Constant {
     public static let emailDummy = "sandydc@mailsac.com"
     public static let host = "https://mailsac.com/api/"
 }
+
+//Constant.host + "addresses/" + Constant.emailDummy + "/messages" + "?_mailsacKey="
+//https://mailsac.com/api/addresses/sandydc@mailsac.com/messages?_mailsacKey=k_bv6xH8wKzhHFThNGKTPoKVGFmy6ClvZJ8J95A"

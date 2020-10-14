@@ -14,17 +14,36 @@ class MailViewController: UIViewController {
     
     var presenter: MailViewToPresenter?
     
+    private var mails: [Mail]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        presenter?.updateView()
     }
 
 }
 
 extension MailViewController: MailPresenterToView {
     
-    func showMail(mail: Mail) {
+    func updatePrevEmail(content: String, index: Int) {
+        var mail = mails![index]
+        mail.content = content
+        mails![index] = mail
+        MailTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+    }
+    
+    func showMail(mail: [Mail]) {
+        debugPrint(mail)
+        mails = mail
+        MailTableView.reloadData()
         
+        var count = 0
+        for mail in mails! {
+            presenter?.updateEmail(idEmail: mail.id, index: count)
+            count+=1
+            
+        }
     }
     
     func showError() {
@@ -35,13 +54,12 @@ extension MailViewController: MailPresenterToView {
 extension MailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return mails?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mailCell", for: indexPath) as! MailCell
-        cell.setupDummyCell(index: indexPath.row)
-//        cell.setupCell(mail: mail)
+        cell.setupCell(mail: mails![indexPath.row])
         return cell
     }
     
