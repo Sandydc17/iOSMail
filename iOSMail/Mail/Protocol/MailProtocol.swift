@@ -12,6 +12,9 @@ protocol MailPresenterToView: class {
     func showMail(mail: [Mail])
     func showError()
     func updatePrevEmail(content: String, index: Int)
+    func deleteSuccess()
+    func unreadSuccess(selectedRow: [IndexPath])
+    func readSuccess(selectedRow: [IndexPath])
 }
 
 protocol MailInteractorToPresenter: class {
@@ -19,6 +22,9 @@ protocol MailInteractorToPresenter: class {
     func mailFetchFailed()
     func prevMailFetchSuccess(content: String, index: Int)
     func prevMailFetchFailed()
+    func deleteSuccess()
+    func unreadSuccess(selectedRow: [IndexPath])
+    func readSuccess(selectedRow: [IndexPath])
 }
 
 protocol MailPresenterToInteractor: class {
@@ -26,6 +32,9 @@ protocol MailPresenterToInteractor: class {
     
     func fetchMail()
     func fechPrevMail(idEmail: String, index: Int)
+    func deleteMail(idEmail: String)
+    func unreadMail(idEmail: String, selectedRow: [IndexPath])
+    func readMail(idEmail: String, selectedRow: [IndexPath])
 }
 
 protocol MailViewToPresenter: class {
@@ -35,6 +44,9 @@ protocol MailViewToPresenter: class {
     
     func updateView()
     func updateEmail(idEmail: String, index: Int)
+    func deletePressed(idEmails: [String])
+    func readPressed(idEmails: [String], selectedRow: [IndexPath])
+    func unreadPressed(idEmails: [String], selectedRow: [IndexPath])
 }
 
 protocol MailPresenterToRouter: class {

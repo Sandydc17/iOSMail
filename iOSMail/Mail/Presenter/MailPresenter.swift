@@ -24,10 +24,41 @@ class MailPresenter: MailViewToPresenter {
     func updateEmail(idEmail: String, index: Int) {
         interactor?.fechPrevMail(idEmail: idEmail, index: index)
     }
+    
+    func deletePressed(idEmails: [String]) {
+        for email in idEmails {
+            interactor?.deleteMail(idEmail: email)
+        }
+    }
+    
+    func readPressed(idEmails: [String], selectedRow: [IndexPath]) {
+        for email in idEmails {
+            interactor?.readMail(idEmail: email, selectedRow: selectedRow)
+        }
+    }
+    
+    func unreadPressed(idEmails: [String], selectedRow: [IndexPath]) {
+        for email in idEmails {
+            interactor?.unreadMail(idEmail: email, selectedRow: selectedRow)
+        }
+    }
 
 }
 
 extension MailPresenter: MailInteractorToPresenter {
+    func unreadSuccess(selectedRow: [IndexPath]) {
+        view?.unreadSuccess(selectedRow: selectedRow)
+    }
+    
+    func readSuccess(selectedRow: [IndexPath]) {
+        view?.readSuccess(selectedRow: selectedRow)
+    }
+    
+    
+    func deleteSuccess() {
+        view?.deleteSuccess()
+    }
+    
     
     func prevMailFetchSuccess(content: String, index: Int) {
         view?.updatePrevEmail(content: content, index: index)

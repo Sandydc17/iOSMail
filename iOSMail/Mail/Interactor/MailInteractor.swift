@@ -17,11 +17,10 @@ class MailInteractor: MailPresenterToInteractor {
             if(response.response?.statusCode == 200) {
                 guard let data = response.data else { return }
                 do {
-                    debugPrint(data)
                     let decoder = JSONDecoder()
                     let mailResponse = try decoder.decode(Array<Mail>.self, from: data)
 //                        guard let genreItems = genreResponse.genres else{return}
-//                        debugPrint(mailResponse)
+                        debugPrint(mailResponse)
                     self.presenter?.mailFetchSuccess(mail: mailResponse)
 //                        self.presenter?.genreFetchSuccess(genre: genreItems)
 
@@ -42,6 +41,36 @@ class MailInteractor: MailPresenterToInteractor {
                 self.presenter?.prevMailFetchSuccess(content: content, index: index)
             } else {
                 self.presenter?.prevMailFetchFailed()
+            }
+        }
+    }
+    
+    func deleteMail(idEmail: String) {
+        AF.request(Constant.host + "addresses/" + Constant.emailDummy + "/messages" + "/\(idEmail)" + "?_mailsacKey=" + Constant.apiKey, method: .delete).response { response in
+            if(response.response?.statusCode == 200) {
+                self.presenter?.deleteSuccess()
+            } else {
+                
+            }
+        }
+    }
+    
+    func unreadMail(idEmail: String, selectedRow: [IndexPath]) {
+        AF.request(Constant.host + "addresses/" + Constant.emailDummy + "/messages" + "/\(idEmail)" + "/read/false" + "?_mailsacKey=" + Constant.apiKey, method: .delete).response { response in
+            if(response.response?.statusCode == 200) {
+                self.presenter?.unreadSuccess(selectedRow: selectedRow)
+            } else {
+                
+            }
+        }
+    }
+    
+    func readMail(idEmail: String, selectedRow: [IndexPath]) {
+        AF.request(Constant.host + "addresses/" + Constant.emailDummy + "/messages" + "/\(idEmail)" + "/read/false" + "?_mailsacKey=" + Constant.apiKey, method: .delete).response { response in
+            if(response.response?.statusCode == 200) {
+                self.presenter?.readSuccess(selectedRow: selectedRow)
+            } else {
+                
             }
         }
     }

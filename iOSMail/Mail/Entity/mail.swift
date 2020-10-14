@@ -17,7 +17,7 @@ struct Mail: Codable {
     let attachments: [String]
     let ip, via, folder: String
     let labels: [String]
-    let read: Bool?
+    var read: Bool?
     var content: String?
 
     enum CodingKeys: String, CodingKey {
