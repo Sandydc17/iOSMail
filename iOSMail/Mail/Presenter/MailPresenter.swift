@@ -10,9 +10,6 @@ import Foundation
 class MailPresenter: MailViewToPresenter {
     
     
-//    public var dataMail: [Mail]?
-//    public var dataContent: [String]?
-    
     var view: MailPresenterToView?
     var interactor: MailPresenterToInteractor?
     var router: MailPresenterToRouter?
@@ -32,15 +29,17 @@ class MailPresenter: MailViewToPresenter {
     }
     
     func readPressed(idEmails: [String], selectedRow: [IndexPath]) {
-        for email in idEmails {
-            interactor?.readMail(idEmail: email, selectedRow: selectedRow)
-        }
+        //Call interactor for request READ function
+        interactor?.readMail(idEmail: idEmails, selectedRow: selectedRow)
     }
     
     func unreadPressed(idEmails: [String], selectedRow: [IndexPath]) {
-        for email in idEmails {
-            interactor?.unreadMail(idEmail: email, selectedRow: selectedRow)
-        }
+        //Call interactor for request READ function
+        interactor?.readMail(idEmail: idEmails, selectedRow: selectedRow)
+    }
+    
+    func selectedMail(idEmail: String, index: Int) {
+        router?.presentDetailMail(view: view!, idEmail: idEmail)
     }
 
 }
@@ -54,11 +53,9 @@ extension MailPresenter: MailInteractorToPresenter {
         view?.readSuccess(selectedRow: selectedRow)
     }
     
-    
     func deleteSuccess() {
         view?.deleteSuccess()
     }
-    
     
     func prevMailFetchSuccess(content: String, index: Int) {
         view?.updatePrevEmail(content: content, index: index)
@@ -68,12 +65,8 @@ extension MailPresenter: MailInteractorToPresenter {
         
     }
     
-    func mailFetchSuccess(mail: [Mail]) {
-//        dataMail = mail
-//        for mailItem in dataMail! {
-//       }
-        
-        view?.showMail(mail: mail)
+    func mailFetchSuccess(mails: Mails) {
+        view?.showMail(mails: mails)
     }
     
     func mailFetchFailed() {

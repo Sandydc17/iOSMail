@@ -20,13 +20,13 @@ class MailCell: UITableViewCell {
         // Initialization code
     }
     
-    func setupCell(mail: Mail) {
-        nameLabel.text = mail.from[0].name
+    func setupCell(mail: Content) {
+        nameLabel.text = mail.from
         subjectLabel.text = mail.subject
-        timeLabel.text = mail.received
-        contentLabel.text = mail.content
-//        contentLabel.text = "content email cont ent email con tent email cont ent email cont ent email con tent email"
-        readed.isHidden = mail.read ?? false
+        timeLabel.text = mail.createdAt
+        contentLabel.text = mail.preview
+//        contentLabel.text = "content email cont ent email con tent email con tent email cont ent email cont ent email"
+        readed.isHidden = mail.read 
     }
     
     func setupDummyCell(index: Int) {

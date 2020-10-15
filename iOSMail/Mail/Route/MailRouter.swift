@@ -25,4 +25,13 @@ class MailRouter: MailPresenterToRouter {
         return view
     }
     
+    func presentDetailMail(view: MailPresenterToView, idEmail: String) {
+        let detailRouter = DetailRouter()
+        let detailView = detailRouter.createDetailPage(idEmail: idEmail)
+        guard let viewVC = view as? UIViewController else {
+            fatalError("Invalid View Protocol type")
+        }
+        viewVC.present(detailView, animated: true)
+    }
+    
 }

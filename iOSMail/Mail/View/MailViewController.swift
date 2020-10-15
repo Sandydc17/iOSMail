@@ -15,13 +15,19 @@ class MailViewController: UIViewController {
     lazy var refreshControl = UIRefreshControl()
     
     var presenter: MailViewToPresenter?
+    var isTableViewEditing: Bool = false
     
-    private var mails: [Mail]?
+    private var mails: [Content]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         refreshControl.beginRefreshing()
+        setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        
         presenter?.updateView()
     }
 
@@ -29,35 +35,40 @@ class MailViewController: UIViewController {
 
 extension MailViewController: MailPresenterToView {
     func unreadSuccess(selectedRow: [IndexPath]) {
-        MailTableView.reloadRows(at: selectedRow, with: .automatic)
+        let alert = UIAlertController(title: "Oops!", message: "There's no API to change 'read' message to 'unread' message \n Selected Row \(selectedRow)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     func readSuccess(selectedRow: [IndexPath]) {
-        MailTableView.reloadRows(at: selectedRow, with: .automatic)
+        let alert = UIAlertController(title: "Oops!", message: "There's no API to change 'unread' message to 'read' message", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     
     func deleteSuccess() {
-        MailTableView.reloadSections([0], with: .automatic)
+        presenter?.updateView()
+//        MailTableView.reloadData()
     }
     
     func updatePrevEmail(content: String, index: Int) {
         var mail = mails![index]
-        mail.content = content
+        mail.preview = content
         mails![index] = mail
         MailTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
     }
     
-    func showMail(mail: [Mail]) {
-        self.mails = mail
-        self.MailTableView.reloadData()
+    func showMail(mails: Mails) {
+        self.mails = mails.content
+        MailTableView.reloadData()
         var count = 0
         for mail in self.mails! {
             self.presenter?.updateEmail(idEmail: mail.id, index: count)
             count+=1
+            
         }
-//        mails = mail
-//        MailTableView.reloadData()
+        MailTableView.reloadData()
         self.refreshControl.endRefreshing()
         
     }
@@ -75,15 +86,17 @@ extension MailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mailCell", for: indexPath) as! MailCell
-        cell.setupCell(mail: mails![indexPath.row])
+        cell.setupCell(mail: mails![indexPath.row] as Content)
         return cell
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         if tableView.isEditing {
-            return true
+            isTableViewEditing = true
+        } else {
+            isTableViewEditing = false
         }
-        return false
+        return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -92,9 +105,16 @@ extension MailViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !isTableViewEditing {
+            if let selectedMail = mails?[indexPath.item] {
+                presenter?.selectedMail(idEmail: selectedMail.id, index: indexPath.row)
+            }
+        }
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        // Toggles the actual editing actions appearing on a table view
         MailTableView.setEditing(editing, animated: true)
         if editing {
             self.navigationController?.setToolbarHidden(false, animated: true)
@@ -136,7 +156,7 @@ extension MailViewController {
             for index in selectedRows! {
                 let mail = mails![index.row]
                 idEmails.append(mail.id)
-                mails?.remove(at: index.row)
+//                mails?.remove(at: index.row)
             }
             presenter?.deletePressed(idEmails: idEmails)
         }
@@ -145,14 +165,8 @@ extension MailViewController {
     @objc func unreadPressed() {
         let selectedRows = self.MailTableView.indexPathsForSelectedRows
         if(selectedRows != nil) {
+            print(selectedRows)
             var idEmails: [String] = []
-            for index in selectedRows! {
-                var mail = mails![index.row]
-                mail.read = false
-                mails![index.row] = mail
-                idEmails.append(mail.id)
-                
-            }
             presenter?.unreadPressed(idEmails: idEmails, selectedRow: selectedRows!)
         }
     }
@@ -161,12 +175,6 @@ extension MailViewController {
         let selectedRows = self.MailTableView.indexPathsForSelectedRows
         if(selectedRows != nil) {
             var idEmails: [String] = []
-            for index in selectedRows! {
-                var mail = mails![index.row]
-                mail.read = true
-                mails![index.row] = mail
-                idEmails.append(mail.id)
-            }
             presenter?.readPressed(idEmails: idEmails, selectedRow: selectedRows!)
         }
     }
