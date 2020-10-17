@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailPresenterToView: class {
     func showDetail(mail: Mail)
+    func fetchDetailFailed()
 }
 
 protocol DetailInteractorToPresenter: class {

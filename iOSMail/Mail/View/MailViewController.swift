@@ -18,6 +18,9 @@ class MailViewController: UIViewController {
     var isTableViewEditing: Bool = false
     
     private var mails: [Content]?
+    private var unreadMails: [Content] = []
+    
+    private var isFilterUnread: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class MailViewController: UIViewController {
 
 extension MailViewController: MailPresenterToView {
     func unreadSuccess(selectedRow: [IndexPath]) {
-        let alert = UIAlertController(title: "Oops!", message: "There's no API to change 'read' message to 'unread' message \n Selected Row \(selectedRow)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops!", message: "There's no API to change 'read' message to 'unread' message", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
@@ -49,7 +52,6 @@ extension MailViewController: MailPresenterToView {
     
     func deleteSuccess() {
         presenter?.updateView()
-//        MailTableView.reloadData()
     }
     
     func updatePrevEmail(content: String, index: Int) {
@@ -61,6 +63,18 @@ extension MailViewController: MailPresenterToView {
     
     func showMail(mails: Mails) {
         self.mails = mails.content
+        
+        for mail in self.mails! {
+            print(mail.read)
+            if(mail.read == false) {
+                unreadMails.append(mail)
+            }
+        }
+        
+        for mail in unreadMails {
+            print(mail.id)
+        }
+        
         MailTableView.reloadData()
         var count = 0
         for mail in self.mails! {
@@ -74,27 +88,40 @@ extension MailViewController: MailPresenterToView {
     }
     
     func showError() {
-        
+        let alert = UIAlertController(title: "Oops!", message: "Failed to fetch Email", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
 extension MailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mails?.count ?? 0
+        if isFilterUnread {
+            return unreadMails.count
+        } else {
+            return mails?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mailCell", for: indexPath) as! MailCell
-        cell.setupCell(mail: mails![indexPath.row] as Content)
+        if isFilterUnread {
+            cell.setupCell(mail: unreadMails[indexPath.row] as Content)
+        } else {
+            cell.setupCell(mail: mails![indexPath.row] as Content)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         if tableView.isEditing {
             isTableViewEditing = true
+            setUIBar()
+            
         } else {
             isTableViewEditing = false
+            setUIBar()
         }
         return true
     }
@@ -115,12 +142,16 @@ extension MailViewController: UITableViewDelegate, UITableViewDataSource {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        MailTableView.setEditing(editing, animated: true)
-        if editing {
-            self.navigationController?.setToolbarHidden(false, animated: true)
+        if isEditing {
+            isTableViewEditing = true
+            setUIBar()
+            
         } else {
-            self.navigationController?.setToolbarHidden(true, animated: true)
+            isTableViewEditing = false
+            setUIBar()
         }
+        MailTableView.setEditing(editing, animated: true)
+        
     }
 }
 
@@ -134,19 +165,30 @@ extension MailViewController {
         MailTableView.allowsMultipleSelectionDuringEditing = true
         
         self.navigationItem.rightBarButtonItem = editButtonItem
-
-        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-        let deleteButton: UIBarButtonItem = UIBarButtonItem(title: "delete", style: .plain, target: self, action: #selector(deletePressed))
-        let readButton: UIBarButtonItem = UIBarButtonItem(title: "read", style: .plain, target: self, action: #selector(unreadPressed))
-        let unreadButton: UIBarButtonItem = UIBarButtonItem(title: "unread", style: .plain, target: self, action: #selector(readPressed))
-        self.toolbarItems = [readButton, flexible, unreadButton, flexible, deleteButton]
         self.navigationController?.toolbar.barTintColor = UIColor.white
+        self.navigationController?.setToolbarHidden(false, animated: false)
         
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         MailTableView.addSubview(refreshControl)
         
         let nib = UINib(nibName: "MailCell", bundle: nil)
         self.MailTableView.register(nib, forCellReuseIdentifier: "mailCell")
+        
+        setUIBar()
+    }
+    
+    func setUIBar() {
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        let deleteButton: UIBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
+        let readButton: UIBarButtonItem = UIBarButtonItem(title: "Mark as read", style: .plain, target: self, action: #selector(unreadPressed))
+        let unreadButton: UIBarButtonItem = UIBarButtonItem(title: "Mark as unread", style: .plain, target: self, action: #selector(readPressed))
+        let filterUnreadButton: UIBarButtonItem = UIBarButtonItem(title: "Filter Unread", style: .plain, target: self, action: #selector(filterUnread))
+        
+        if isTableViewEditing {
+            self.toolbarItems = [readButton, flexible, unreadButton, flexible, deleteButton]
+        } else {
+            self.toolbarItems = [filterUnreadButton, flexible, deleteButton]
+        }
     }
     
     @objc func deletePressed() {
@@ -156,7 +198,6 @@ extension MailViewController {
             for index in selectedRows! {
                 let mail = mails![index.row]
                 idEmails.append(mail.id)
-//                mails?.remove(at: index.row)
             }
             presenter?.deletePressed(idEmails: idEmails)
         }
@@ -165,8 +206,7 @@ extension MailViewController {
     @objc func unreadPressed() {
         let selectedRows = self.MailTableView.indexPathsForSelectedRows
         if(selectedRows != nil) {
-            print(selectedRows)
-            var idEmails: [String] = []
+            let idEmails: [String] = []
             presenter?.unreadPressed(idEmails: idEmails, selectedRow: selectedRows!)
         }
     }
@@ -174,15 +214,27 @@ extension MailViewController {
     @objc func readPressed() {
         let selectedRows = self.MailTableView.indexPathsForSelectedRows
         if(selectedRows != nil) {
-            var idEmails: [String] = []
+            let idEmails: [String] = []
             presenter?.readPressed(idEmails: idEmails, selectedRow: selectedRows!)
         }
+    }
+    
+    @objc func filterUnread() {
+        if isFilterUnread {
+            print("IS FALSE")
+            isFilterUnread = false
+        } else {
+            print("IS TRUE")
+            isFilterUnread = true
+        }
+        MailTableView.reloadData()
     }
     
     @objc func refresh(_ sender: AnyObject) {
         DispatchQueue.main.async {
             self.presenter?.updateView()
         }
+        isFilterUnread = false
         
     }
 }

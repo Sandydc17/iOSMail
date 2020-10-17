@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DetailPresenter: DetailViewToPresenter {
     
@@ -16,8 +17,6 @@ class DetailPresenter: DetailViewToPresenter {
     func updateView(idEmail: String) {
         interactor?.fetchDetail(idEmail: idEmail)
     }
-    
-    
 }
 
 extension DetailPresenter: DetailInteractorToPresenter {
@@ -27,7 +26,7 @@ extension DetailPresenter: DetailInteractorToPresenter {
     }
     
     func fetchDetailFailed() {
-        
+        view?.fetchDetailFailed()
     }
     
     

@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXK-91-clz">
-                        <rect key="frame" x="28" y="8" width="46.5" height="21"/>
+                        <rect key="frame" x="28" y="8" width="192" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Bdw-H8-Fs8"/>
                         </constraints>
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4o-xF-F4y">
-                        <rect key="frame" x="28" y="33" width="284" height="18"/>
+                        <rect key="frame" x="28" y="33" width="276" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="EOP-H2-Frd"/>
                         </constraints>
@@ -45,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbs-wD-oPD">
-                        <rect key="frame" x="254" y="8" width="34" height="21"/>
+                        <rect key="frame" x="254.5" y="8" width="33.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -76,12 +76,13 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Pxm-Y6-bKT" secondAttribute="trailing" constant="8" id="1JW-mO-6H9"/>
                     <constraint firstItem="5iM-JV-C2K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="7mw-dP-BZr"/>
-                    <constraint firstAttribute="trailing" secondItem="R4o-xF-F4y" secondAttribute="trailing" constant="8" id="GtV-Nb-WMN"/>
+                    <constraint firstAttribute="trailing" secondItem="R4o-xF-F4y" secondAttribute="trailing" constant="16" id="GtV-Nb-WMN"/>
                     <constraint firstAttribute="bottom" secondItem="Pxm-Y6-bKT" secondAttribute="bottom" constant="8" id="IJs-Me-7Ma"/>
-                    <constraint firstItem="mbs-wD-oPD" firstAttribute="centerY" secondItem="XXK-91-clz" secondAttribute="centerY" id="Jw2-gW-IbF"/>
+                    <constraint firstItem="mbs-wD-oPD" firstAttribute="top" secondItem="XXK-91-clz" secondAttribute="top" id="Jw2-gW-IbF"/>
                     <constraint firstItem="XXK-91-clz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="NAC-Xd-1j0"/>
                     <constraint firstItem="R4o-xF-F4y" firstAttribute="top" secondItem="XXK-91-clz" secondAttribute="bottom" constant="4" id="Ssn-1m-Mu2"/>
                     <constraint firstItem="XXK-91-clz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="YCD-vR-IPB"/>
+                    <constraint firstAttribute="trailing" secondItem="XXK-91-clz" secondAttribute="trailing" constant="100" id="Yjz-S7-f6b"/>
                     <constraint firstItem="5iM-JV-C2K" firstAttribute="centerY" secondItem="XXK-91-clz" secondAttribute="centerY" id="ala-Lk-KmP"/>
                     <constraint firstAttribute="trailing" secondItem="Lak-K1-tmC" secondAttribute="trailing" constant="8" id="c1j-NU-X6L"/>
                     <constraint firstItem="R4o-xF-F4y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="duH-0A-dGS"/>

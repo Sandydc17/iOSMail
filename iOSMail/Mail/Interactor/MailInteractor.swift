@@ -38,13 +38,12 @@ class MailInteractor: MailPresenterToInteractor {
                 do {
                     let decoder = JSONDecoder()
                     let mailResponse = try decoder.decode(previewMail.self, from: data)
-//                    debugPrint(mailResponse)
-//                    self.presenter?.mailFetchSuccess(mails: mailResponse)
+                    self.presenter?.prevMailFetchSuccess(content: mailResponse.body, index: index)
 
                 } catch let error {
                     print(error)
                 }
-//                self.presenter?.prevMailFetchSuccess(content: content, index: index)
+                
             } else {
                 self.presenter?.prevMailFetchFailed()
             }
@@ -58,11 +57,13 @@ class MailInteractor: MailPresenterToInteractor {
     }
     
     func unreadMail(idEmail: [String], selectedRow: [IndexPath]) {
+        //Call API for unread Mail
         self.presenter?.unreadSuccess(selectedRow: selectedRow)
 
     }
     
     func readMail(idEmail: [String], selectedRow: [IndexPath]) {
+        //Call API for read Mail
         self.presenter?.readSuccess(selectedRow: selectedRow)
 
     }

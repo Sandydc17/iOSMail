@@ -31,11 +31,17 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailPresenterToView {
+    
     func showDetail(mail: Mail) {
         self.mail = mail
         setupContent()
     }
     
+    func fetchDetailFailed() {
+        let alert = UIAlertController(title: "Oops!", message: "Failed to fetch Detail Email", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
 }
 
@@ -44,7 +50,7 @@ extension DetailViewController {
     func setupContent() {
         fromLabel.text = mail?.from
         toLabel.text = mail?.to[0]
-        timeLabel.text = mail?.createdAt
+        timeLabel.text = convertTime(dateGet: mail?.createdAt ?? "")
         subjectLabel.text = mail?.subject
         bodyLabel.attributedText = mail?.body.htmlToAttributedString
     }
@@ -55,13 +61,32 @@ extension DetailViewController {
 
         
         let navItem = UINavigationItem(title: "")
-        let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(backPressed))
+        let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closePressed))
         navItem.rightBarButtonItem = backItem
         navBar.setItems([navItem], animated: false)
     }
     
-    @objc func backPressed() {
+    @objc func closePressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func convertTime(dateGet: String) -> String {
+        var temp = dateGet
+        if let dotRange = temp.range(of: ".") {
+          temp.removeSubrange(dotRange.lowerBound..<temp.endIndex)
+        }
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+
+
+        if let date = dateFormatterGet.date(from: temp) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+            print("There was an error decoding the string")
+            return ""
+        }
     }
 }
 

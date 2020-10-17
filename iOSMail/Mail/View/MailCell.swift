@@ -17,39 +17,45 @@ class MailCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
     func setupCell(mail: Content) {
         nameLabel.text = mail.from
         subjectLabel.text = mail.subject
-        timeLabel.text = mail.createdAt
-        contentLabel.text = mail.preview
-//        contentLabel.text = "content email cont ent email con tent email con tent email cont ent email cont ent email"
+        timeLabel.text = convertTime(dateGet: mail.createdAt)
+        contentLabel.text = removeHtmlTag(content: mail.preview ?? "")
         readed.isHidden = mail.read 
     }
     
-    func setupDummyCell(index: Int) {
-        nameLabel.text = "Sandy Chandra"
-        subjectLabel.text = "ini merupakan subject email"
-        timeLabel.text = "Sunday"
-        contentLabel.text = "content email cont ent email con tent email con tent email cont ent email cont ent email"
-        if(index % 2 == 0) {
-            readed.isHidden = true
+    private func convertTime(dateGet: String) -> String {
+        var temp = dateGet
+        if let dotRange = temp.range(of: ".") {
+          temp.removeSubrange(dotRange.lowerBound..<temp.endIndex)
+        }
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "EEEE"
+
+
+        if let date = dateFormatterGet.date(from: temp) {
+            return dateFormatterPrint.string(from: date)
         } else {
-            readed.isHidden = false
+            print("There was an error decoding the string")
+            return ""
         }
     }
     
-//    func countTime(date: String) -> String {
-//
-//
-//    }
+    private func removeHtmlTag(content: String) -> String {
+        let a = content.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        let b = a.replacingOccurrences(of: "&[^;]+;", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        return b
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

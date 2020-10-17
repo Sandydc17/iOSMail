@@ -29,12 +29,10 @@ class MailPresenter: MailViewToPresenter {
     }
     
     func readPressed(idEmails: [String], selectedRow: [IndexPath]) {
-        //Call interactor for request READ function
         interactor?.readMail(idEmail: idEmails, selectedRow: selectedRow)
     }
     
     func unreadPressed(idEmails: [String], selectedRow: [IndexPath]) {
-        //Call interactor for request READ function
         interactor?.readMail(idEmail: idEmails, selectedRow: selectedRow)
     }
     
